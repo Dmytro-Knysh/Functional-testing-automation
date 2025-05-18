@@ -32,7 +32,6 @@ jobs:
         if [ ! -f /usr/bin/chromedriver ]; then
           sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
         fi
-        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
 
     - name: Set environment variables
       run: |

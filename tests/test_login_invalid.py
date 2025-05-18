@@ -8,7 +8,12 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class TestLoginInvalid(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome(service=Service(), options=Options())
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+
+        self.driver = webdriver.Chrome(service=Service(), options=chrome_options)#options=Options()
         self.wait = WebDriverWait(self.driver, 10)
         self.driver.get("https://opensource-demo.orangehrmlive.com/")
 

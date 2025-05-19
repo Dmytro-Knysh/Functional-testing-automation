@@ -30,6 +30,11 @@ class TestMyInfoNavigation(unittest.TestCase):
         self.driver.quit()
 
     def test_navigate_to_my_info(self):
-        self.wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@href='/web/index.php/pim/viewMyDetails']"))).click()
-        header = self.wait.until(EC.presence_of_element_located((By.XPATH, "//h6[text()='Personal Details']")))
+        my_info_link = self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, "//a[@href='/web/index.php/pim/viewMyDetails']")))
+
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", my_info_link)
+        self.driver.execute_script("arguments[0].click();", my_info_link)
+        header = self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, "//h6[text()='Personal Details']")))
         self.assertIn("Personal Details", header.text)

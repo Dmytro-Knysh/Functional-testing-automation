@@ -33,7 +33,8 @@ class TestLogout(unittest.TestCase):
         self.driver.quit()
 
     def test_logout(self):
-        self.wait.until(EC.element_to_be_clickable((By.XPATH, "//p[@class='oxd-userdropdown-name']"))).click()
+        element = self.wait.until(EC.presence_of_element_located((By.XPATH, "//p[@class='oxd-userdropdown-name']")))
+        self.driver.execute_script("arguments[0].click();", element)
         self.wait.until(EC.element_to_be_clickable((By.XPATH, "//a[text()='Logout']"))).click()
         self.wait.until(EC.presence_of_element_located((By.NAME, "username")))
         self.assertIn("login", self.driver.current_url.lower())
